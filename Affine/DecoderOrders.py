@@ -1,16 +1,14 @@
 import numpy as np
+import string
 
-alphabet = ['а', 'б', 'в', 'г', 'ґ', 'д', 'е', 'є', 'ж', 'з', 'и', 'і', 'ї', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ь', 'ю', 'я']
+ss = string.ascii_lowercase + "фывапол"
 
 
-def conwertor(a = str):
-    print(a, "S")
-    if a.isalpha():
-        print(a, "S")
-        return alphabet.index(a)
-    if a.isnumeric():
-        print(a, "S")
-        return alphabet[a]
+def conwertor(a):
+    if str(a).isalpha():
+        return ss.index(a)
+    if str(a).isnumeric():
+        return ss[int(a)]
 
 
 def gcdex(a, b):
@@ -20,13 +18,13 @@ def gcdex(a, b):
     return x, y - (a // b) * x
 
 
-a, s, m = [[1, 2], [3, 4]], [[5], [6]], 33
-text = open("encoding_result.txt", "r", encoding='utf-8').read()
-ss =list(map(conwertor, text))
-print(ss)
+a, s, m = [[1, 2], [3, 4]], [[5], [6]], len(ss)
+text = open("encoding_result.txt", "r").read()
 det = int(np.linalg.det(a))
 a1 = (np.linalg.inv(a) * det * int(gcdex(det, m)[0])) % m
+print(a1)
 s1 = (-a1 @ s) % m
+print(s1)
 x = np.array(list(map(conwertor, text))).reshape(len(a1), int(len(text)/2))
 print(x,"ss")
 # x = [[10, 4, 23,], [32, 25, 27]]
@@ -36,7 +34,7 @@ print(zash_matrix)
 
 
 encod_result = "".join(list(map(conwertor, [int(char) for row in zash_matrix for char in row])))
-open("decoding_result.txt", "w", encoding='utf-8').write(encod_result)
+open("decoding_result.txt", "w").write(encod_result)
 
 enc = [[[115,  97, 109],
         [105, 114, 120]],

@@ -1,21 +1,30 @@
 import numpy as np
+import string
+
+
+def conwertor(a = str):
+    if str(a).isalpha():
+        return string.ascii_lowercase.index(a)
+    if str(a).isnumeric():
+        return string.ascii_lowercase[int(a)]
+
 
 text = open("text.txt", "r").read()
 if len(text) % 2 != 0:
     text += "x"
 
-a, s, m = [[1, 2], [3, 4]], [[5], [6]], 33
+a, s, m = [[1, 2], [3, 4]], [[5], [6]], len(string.ascii_lowercase)
 # a = np.array([random.choice([x for x in range(m) if gcd(x, m) == 1]) for x in range(4)]).reshape(2,2)
 
-
-x = np.array(list(map(ord, text))).reshape(len(a), int(len(text)/2))
+x = np.array(list(map(conwertor, text))).reshape(len(a), int(len(text)/2))
 print(x)
 # x = [[16, 21, 18], [11, 22, 0]]
 zash_matrix = ((np.array(a) @ x) + s) % m
+print(string.ascii_lowercase)
 print(zash_matrix)
-encod_result = "".join(list(map(chr, [char for row in zash_matrix for char in row])))
+encod_result = "".join(list(map(conwertor, [char for row in zash_matrix for char in row])))
 
-open("encoding_result.txt", "w", encoding='utf-8').write(encod_result)
+open("encoding_result.txt", "w").write(encod_result)
 
 
 
