@@ -1,26 +1,27 @@
 import numpy as np
 import string
 
+ss = string.ascii_lowercase + "фывапол"
+
 
 def conwertor(a = str):
     if str(a).isalpha():
-        return string.ascii_lowercase.index(a)
+        return ss.index(a)
     if str(a).isnumeric():
-        return string.ascii_lowercase[int(a)]
+        return ss[int(a)]
 
 
 text = open("text.txt", "r").read()
 if len(text) % 2 != 0:
     text += "x"
 
-a, s, m = [[1, 2], [3, 4]], [[5], [6]], len(string.ascii_lowercase)
+a, s, m = [[1, 2], [3, 4]], [[5], [6]], len(ss)
 # a = np.array([random.choice([x for x in range(m) if gcd(x, m) == 1]) for x in range(4)]).reshape(2,2)
 
 x = np.array(list(map(conwertor, text))).reshape(len(a), int(len(text)/2))
 print(x)
 # x = [[16, 21, 18], [11, 22, 0]]
-zash_matrix = ((np.array(a) @ x) + s) % m
-print(string.ascii_lowercase)
+zash_matrix = (np.array(a) @ x + s) % m
 print(zash_matrix)
 encod_result = "".join(list(map(conwertor, [char for row in zash_matrix for char in row])))
 

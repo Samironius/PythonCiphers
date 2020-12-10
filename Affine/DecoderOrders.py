@@ -22,13 +22,11 @@ a, s, m = [[1, 2], [3, 4]], [[5], [6]], len(ss)
 text = open("encoding_result.txt", "r").read()
 det = int(np.linalg.det(a))
 a1 = (np.linalg.inv(a) * det * int(gcdex(det, m)[0])) % m
-print(a1)
 s1 = (-a1 @ s) % m
-print(s1)
-x = np.array(list(map(conwertor, text))).reshape(len(a1), int(len(text)/2))
-print(x,"ss")
-# x = [[10, 4, 23,], [32, 25, 27]]
 
+x = np.array(list(map(conwertor, text))).reshape(len(a1), int(len(text)/2))
+x = [[10, 4, 23,], [32, 25, 27]]
+print(x)
 zash_matrix = (a1 @ x + s1) % m
 print(zash_matrix)
 
