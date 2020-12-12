@@ -13,28 +13,25 @@ def conwertor(a = str):
     if str(a).isnumeric():
         return alphabet[int(a)]
 
+
 count = 2
+
 text = open("text.txt", "r").read()
 if len(text) % count!= 0:
     text += "x"
 
 a, s, m = [[1, 2], [3, 4]], [[5], [6]], len(alphabet)
-ss = np.array([random.choice([x for x in range(m)]) for x in range(count*count)]).reshape(count, count)
-# print(int(np.linalg.det(ss)))
 
-while gcd(int(np.linalg.det(ss)), m) != 1:
-    ss = np.array([random.choice([x for x in range(m)]) for x in range(count*count)]).reshape(count, count)
-
-# open("key.txt","w").write([str(char) for row in ss for char in row])
-# print(int(np.linalg.det(ss)))
-print(ss)
+while gcd(int(np.linalg.det(a)), m) != 1:
+    a = np.array([random.choice([x for x in range(m)]) for x in range(count*count)]).reshape(count, count)
+open("key.txt", "w").write(" ".join([str(char) for row in a for char in row]) + "   " + " ".join([str(char) for row in s for char in row]) )
 
 x = np.array(list(map(conwertor, text))).reshape(len(a), int(len(text)/count))
 # x, m = [[16, 21, 18], [11, 22, 0]], 33
-# print(x)
+print(x)
 
 zash_matrix = (a @ x + s) % m
-# print(zash_matrix)
+print(zash_matrix)
 encod_result = "".join(list(map(conwertor, [char for row in zash_matrix for char in row])))
 
 open("encoding_result.txt", "w").write(encod_result)
