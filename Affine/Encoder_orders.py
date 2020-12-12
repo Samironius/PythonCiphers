@@ -1,28 +1,40 @@
+from math import gcd
+import random
+
 import numpy as np
 import string
 
-ss = string.ascii_lowercase + "фывапол"
+alphabet = string.ascii_lowercase
 
 
 def conwertor(a = str):
     if str(a).isalpha():
-        return ss.index(a)
+        return alphabet.index(a)
     if str(a).isnumeric():
-        return ss[int(a)]
+        return alphabet[int(a)]
 
-
+count = 2
 text = open("text.txt", "r").read()
-if len(text) % 2 != 0:
+if len(text) % count!= 0:
     text += "x"
 
-a, s, m = [[1, 2], [3, 4]], [[5], [6]], len(ss)
-# a = np.array([random.choice([x for x in range(m) if gcd(x, m) == 1]) for x in range(4)]).reshape(2,2)
+a, s, m = [[1, 2], [3, 4]], [[5], [6]], len(alphabet)
+ss = np.array([random.choice([x for x in range(m)]) for x in range(count*count)]).reshape(count, count)
+# print(int(np.linalg.det(ss)))
 
-x = np.array(list(map(conwertor, text))).reshape(len(a), int(len(text)/2))
-print(x)
-# x = [[16, 21, 18], [11, 22, 0]]
-zash_matrix = (np.array(a) @ x + s) % m
-print(zash_matrix)
+while gcd(int(np.linalg.det(ss)), m) != 1:
+    ss = np.array([random.choice([x for x in range(m)]) for x in range(count*count)]).reshape(count, count)
+
+# open("key.txt","w").write([str(char) for row in ss for char in row])
+# print(int(np.linalg.det(ss)))
+print(ss)
+
+x = np.array(list(map(conwertor, text))).reshape(len(a), int(len(text)/count))
+# x, m = [[16, 21, 18], [11, 22, 0]], 33
+# print(x)
+
+zash_matrix = (a @ x + s) % m
+# print(zash_matrix)
 encod_result = "".join(list(map(conwertor, [char for row in zash_matrix for char in row])))
 
 open("encoding_result.txt", "w").write(encod_result)
