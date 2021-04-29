@@ -8,7 +8,7 @@ def gcdex(a, b):
     return x, y - (a // b) * x
 
 
-count = 5
+count = 7
 keys = list(map(int, open("key.txt", "r").readline().split()))
 a, s, m = np.array(keys[-count-1::-1][::-1]).reshape(count, count), np.array(keys[-count:]).reshape(count, 1), 128
 text = open("encoding_result.txt", "r").read()

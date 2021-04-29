@@ -1,13 +1,14 @@
 import random
 import numpy as np
 
-count = 5
+count = 7
 a, s, m = [[1, 2], [3, 4]], [[5], [6]], 128
 s = np.array([random.randint(0, m) for x in range(count)]).reshape(count, 1)
 text = open("text.txt", "r").read()
 
 while np.gcd(int(np.linalg.det(a)), m) != 1:
     a = np.array([random.choice([x for x in range(m)]) for x in range(count*count)]).reshape(count, count)
+print(a)
 
 while len(text) % count != 0:
     text += "x"
