@@ -43,7 +43,6 @@ elif jacobi_sym(M,n) == 1:
 S = 0
 while jacobi_sym(S,n) != -1:
     S = int(input("input S"))
-print(p,q,S)
 k = (1/2)*((1/4)*(p-1)*(q-1)+1)
 
 if c1 == 0:
@@ -53,7 +52,6 @@ else:
 
 c2 = M1%2
 c = (M1**2)%n
-print(c, c1, c2)
 
 
 open("Encoding_result", "w").write("%s %s %s" % (c, c1, c2))
