@@ -1,11 +1,5 @@
 import numpy as np
-
-
-def gcdex(a, b):
-    if b == 0:
-        return 1, 0
-    y, x = gcdex(b, a % b)
-    return x, y - (a // b) * x
+from math import gcd
 
 
 def decoding():
@@ -14,7 +8,7 @@ def decoding():
     a, s, m = np.array(keys[-count-1::-1][::-1]).reshape(count, count), np.array(keys[-count:]).reshape(count, 1), 128
     text = open("encoding_result.txt", "r").read()
     det = int(np.linalg.det(a))
-    a1 = np.matrix.round((np.linalg.inv(a) * det * int(gcdex(det, m)[0])) % m)
+    a1 = np.matrix.round((np.linalg.inv(a) * det * int(gcd(det, m))) % m)
     s1 = (-a1 @ s) % m
     x = np.array(list(map(ord, text))).reshape(len(a1), int(len(text)/count))
     zash_matrix = (a1 @ x + s1) % m
