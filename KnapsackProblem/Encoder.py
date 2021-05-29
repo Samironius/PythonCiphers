@@ -2,7 +2,7 @@ import numpy as np
 
 
 m, n = 110, 31
-private_key = [1, 2, 4, 8]
+private_key = [1, 2, 4, 8, 16]
 while len(open("Text", "r").read())%len(private_key) != 0:
     private_key.append(private_key[-1]*2)
     print(private_key)

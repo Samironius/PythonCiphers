@@ -17,5 +17,9 @@ for x in range(m):
     if n*x%m == 1:
         n1 = x
 cipher = np.array(list(map(int,open("encoding_result.txt", "r").read().split())))
+print(cipher)
 private_key = np.array(list(map(int,open("private_key.txt", "r").read().split())))
+print(private_key)
+print(cipher*n1%m)
+
 open("decoding_result.txt", "w").write("".join(list(map(convert, cipher*n1%m))))
