@@ -6,6 +6,7 @@ import random
 # q = 167
 
 text = int(open("text", "r").read())
+text = 5
 
 p = 0
 while p%4!=3:
@@ -17,6 +18,7 @@ while q%4!=3:
 
 n = p * q
 cipher = (text**2)%n
+print(cipher)
 
 open("Encoding_result", "w").write(str(cipher))
 open("key", "w").write("%s %s" % (p, q))

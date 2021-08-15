@@ -12,12 +12,17 @@ def encrypting(letter):
     return str((int(letter) ** public_key_e) % public_key_n)
 
 
-p, q = 3, 13
+p, q = 11, 47
 el = (p - 1) * (q - 1)
 public_key_n = p * q
-public_key_e = random.choice([x for x in range(0, el) if gcdex(el, x)[0] == 1])
+# public_key_n = 517
+public_key_e = random.choice([text_of_num for text_of_num in range(1, el) if gcdex(el, text_of_num)[0] == 1])
+print([text_of_num for text_of_num in range(1, el) if gcdex(el, text_of_num)[0] == 1])
+# public_key_e = 3
 private_key = gcdex(el, public_key_e)[2] % el
-text = "".join(list(map(str, map(ord, open("text", "r").read()))))
-open("encrypted", "w").write(" ".join(list(map(encrypting, text))))
+text_of_num = "".join(list(map(str, map(ord, open("text", "r").read()))))
+text_of_num = "100"
+print(" ".join(list(map(encrypting, text_of_num))))
+open("encrypted", "w").write(" ".join(list(map(encrypting, text_of_num))))
 open("public_key", "w").write("%s %s" % (str(public_key_e), str(public_key_n)))
 open("private_key", "w").write(str(private_key))
